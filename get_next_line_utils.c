@@ -7,7 +7,7 @@ int	ft_strlen(char *s)
 	i = 0;
 	while(*(s + i))
 		i++;
-	return (i)
+	return (i);
 }
 char	*ft_strchr(char *s, char c)
 {
@@ -19,7 +19,7 @@ char	*ft_strchr(char *s, char c)
 			return (s);
 		s++;
 	}
-	return (0;)
+	return (0);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
