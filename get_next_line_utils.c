@@ -26,8 +26,10 @@ char	*ft_strchr(char *s, char c)
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	char	*ret;
-	
+	int		i;
+	int		j;
+	char	*res;
+
 	if (!s1)
 	{
 		s1 = malloc(sizeof(char) * 1);
@@ -35,22 +37,19 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	if (!s1 || !s2)
 		return (NULL);
-	ret = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!ret)
+	res = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!res)
 		return (NULL);
-	while(*s1)
+	i = 0;
+	while (*(s1 + i))
 	{
-		*ret = *s1;
-		s1++;
-		ret++;
+		*(res + i) = *(s1 + i);
+		i++;
 	}
-	while (*s2)
-	{
-		*ret = *s2;
-		s2++;
-		ret++;
-	}
-	*ret = '\0';
+	j = 0;
+	while (*(s2 + j))
+		*(res + i++) = *(s2 + j++);
+	*(res + i) = '\0';
 	free(s1);
-	return (ret);
+	return (res);
 }

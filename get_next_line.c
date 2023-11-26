@@ -91,7 +91,7 @@ char    *get_next_line(int fd)
     return (line);
 }
 
-
+/*
 #include<stdio.h>
 #include<fcntl.h>
 int main()
@@ -100,6 +100,9 @@ int main()
     char *str = get_next_line(fd);
     printf("%s", str);
     free(str);
+
     str = get_next_line(fd);
     printf("%s", str);
+    free(str);
 }
+*/
