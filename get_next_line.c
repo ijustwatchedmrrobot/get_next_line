@@ -6,7 +6,7 @@ char    *ft_read(int fd, char *buffer)
     int     bytes_read;
 
     bytes_read = 1;
-    str = malloc(BUFFER_SIZE + 1);
+    str = malloc(sizeof(char) * (BUFFER_SIZE + 1));
     if (!str)
         return (str);
     while (!ft_strchr(buffer, '\n') && bytes_read != 0)
@@ -36,14 +36,14 @@ char    *ft_line(char *buffer)
     while (*(buffer + i) && *(buffer + i) != '\n')
         i++;
     if (*(buffer + i) == '\n')
-        str = malloc(i + 2);
+        str = malloc(sizeof(char) * (i + 2));
     else
-        str = malloc(i + 1);
+        str = malloc(sizeof(char) * (i + 1));
     if (str == NULL)
         return (NULL);
-    i = 0;
-    while (*(buffer + i) && *(buffer + i) != '\n')
-        *(str + i) = *(buffer + i++);
+    i = -1;
+    while (*(buffer + ++i) && *(buffer + i) != '\n')
+        *(str + i) = *(buffer + i);
     if (*(buffer + i) == '\n')
         *(str + i++) = '\n';
     *(str + i) = '\0';
@@ -65,9 +65,9 @@ char    *ft_newline(char *buffer)
         free(buffer);
         return (NULL);
     }
-    str = malloc(ft_strlen(buffer) - i + 1);
+    str = malloc(sizeof(char) * (ft_strlen(buffer) - i + 1));
     if (!str)
-        return (str);
+        return (NULL);
     i++;
     while (*(buffer + i))
         *(str + j++) = *(buffer + i++);
@@ -89,4 +89,17 @@ char    *get_next_line(int fd)
     line = ft_line(buffer);
     buffer = ft_newline(buffer);
     return (line);
+}
+
+
+#include<stdio.h>
+#include<fcntl.h>
+int main()
+{
+    int fd = open("test.txt", O_RDONLY);
+    char *str = get_next_line(fd);
+    printf("%s", str);
+    free(str);
+    str = get_next_line(fd);
+    printf("%s", str);
 }
