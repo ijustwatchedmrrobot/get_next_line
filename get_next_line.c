@@ -50,3 +50,43 @@ char    *ft_line(char *buffer)
     return (str);
 }
 
+char    *ft_newline(char *buffer)
+{
+    char    *str;
+    int         i;
+    int         j;
+
+    i = 0;
+    j = 0;
+    while (*(buffer + i) && *(buffer + i) != '\n')
+        i++;
+    if (!*(buffer + i))
+    {
+        free(buffer);
+        return (NULL);
+    }
+    str = malloc(ft_strlen(buffer) - i + 1);
+    if (!str)
+        return (str);
+    i++;
+    while (*(buffer + i))
+        *(str + j++) = *(buffer + i++);
+    *(str + j) = '\0';
+    free(buffer);
+    return (str);
+}
+
+char    *get_next_line(int fd)
+{
+    static char *buffer;
+    char        *line;
+
+    if (fd < 0 || BUFFER_SIZE <= 0)
+        return (NULL);
+    buffer = ft_read(fd, buffer);
+    if (!buffer)
+        return (NULL);
+    line = ft_line(buffer);
+    buffer = ft_newline(buffer);
+    return (line);
+}
