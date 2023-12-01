@@ -18,9 +18,9 @@ char	*ft_read(int fd, char *buffer)
 	int		bytes_read;
 
 	bytes_read = 1;
-	str = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	str = malloc(BUFFER_SIZE + 1);
 	if (!str)
-		return (str);
+		return (NULL);
 	while (!ft_strchr(buffer, '\n') && bytes_read != 0)
 	{
 		bytes_read = read(fd, str, BUFFER_SIZE);
@@ -48,14 +48,17 @@ char	*ft_line(char *buffer)
 	while (*(buffer + i) && *(buffer + i) != '\n')
 		i++;
 	if (*(buffer + i) == '\n')
-		str = malloc(sizeof(char) * (i + 2));
+		str = malloc(i + 2);
 	else
-		str = malloc(sizeof(char) * (i + 1));
+		str = malloc(i + 1);
 	if (str == NULL)
 		return (NULL);
-	i = -1;
-	while (*(buffer + ++i) && *(buffer + i) != '\n')
+	i = 0;
+	while (*(buffer + i) && *(buffer + i) != '\n')
+	{
 		*(str + i) = *(buffer + i);
+		i++;
+	}
 	if (*(buffer + i) == '\n')
 		*(str + i++) = '\n';
 	*(str + i) = '\0';
@@ -77,7 +80,7 @@ char	*ft_newline(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	str = malloc(sizeof(char) * (ft_strlen(buffer) - i + 1));
+	str = malloc(ft_strlen(buffer) - i + 1);
 	if (!str)
 		return (NULL);
 	i++;

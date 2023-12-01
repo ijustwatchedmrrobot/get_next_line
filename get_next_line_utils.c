@@ -17,8 +17,6 @@ int	ft_strlen(char *s)
 	int	i;
 
 	i = 0;
-	if (s == NULL)
-		return (0);
 	while (*(s + i))
 		i++;
 	return (i);
@@ -45,12 +43,12 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	if (!s1)
 	{
-		s1 = malloc(sizeof(char) * 1);
+		s1 = malloc(sizeof(char));
 		*s1 = '\0';
 	}
 	if (!s1 || !s2)
 		return (NULL);
-	res = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	res = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!res)
 		return (NULL);
 	i = -1;
