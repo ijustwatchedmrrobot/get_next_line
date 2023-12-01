@@ -4,17 +4,18 @@
 
 int main()
 {
-	int		fd, num, i;
-	char	*str;
+	char	*line;
+	int		fd, row;
 
 	fd = open("test.txt", O_RDONLY);
-	num = 3;
-	i = 0;
-	while (num--)
+	line = (char *)1;
+	row = 1;
+	while (line != NULL)
 	{
-	str = get_next_line(fd);
-	free(str);
-	i++;
+		line = get_next_line(fd);
+		printf("%d. line: %s", row, line);
+		free(line);
+		row++;
 	}
-	printf("%d. line: %s", i, str);
+	close(fd);
 }
