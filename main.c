@@ -19,3 +19,8 @@ int main()
 	}
 	close(fd);
 }
+
+/*
+check for fd = 0, 1, 2...
+study buffer, static variable and functions
+*/
