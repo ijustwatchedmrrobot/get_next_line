@@ -1,6 +1,0 @@
-burası bizim ilk line
-burası ikinci line
-burası ise üçüncü line 
-bakalım
-ne 
-olacak
