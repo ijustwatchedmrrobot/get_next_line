@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 /*	
+All lines
 int main()
 {
 	char	*line;
@@ -24,6 +25,7 @@ check for fd = 0, 1, 2...
 study buffer, static variable and functions
 */
 
+// prints i. row
 int main()
 {
 	char	*line;
@@ -36,3 +38,4 @@ int main()
 	printf("%s", line);
 	free(line);
 }
+
